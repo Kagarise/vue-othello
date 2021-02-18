@@ -1,24 +1,3 @@
-# othello
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# 介绍
+- 本项目是黑白棋的前端页面，采用vue框架编写
+- 项目地址：http://othello.zzuli.love
