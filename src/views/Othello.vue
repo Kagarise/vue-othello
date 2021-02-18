@@ -71,11 +71,15 @@
                     </svg>
                 </div>
                 <div class="show current-chess">
-                    <span v-if="is_finish">WINNER</span>
+                    <span v-if="is_finish && judge_winner() !== 0">WINNER</span>
+                    <span v-else-if="is_finish">DRAW</span>
                     <span v-else>Round:{{ past_step.length + 1 }}</span>
                     <svg class="icon" aria-hidden="true">
-                        <use v-if="this.color === 1" xlink:href="#icon-black-chess"></use>
-                        <use v-else xlink:href="#icon-white-chess"></use>
+                        <use v-if="is_finish && judge_winner() > 0" xlink:href="#icon-black-chess"></use>
+                        <use v-else-if="is_finish && judge_winner() < 0" xlink:href="#icon-white-chess"></use>
+                        <use v-else-if="is_finish" xlink:href="#icon-candy"></use>
+                        <use v-else-if="this.color === 1" xlink:href="#icon-black-chess"></use>
+                        <use v-else-if="this.color === -1" xlink:href="#icon-white-chess"></use>
                     </svg>
                 </div>
                 <div class="show current-white">
@@ -154,6 +158,9 @@ export default {
                 name: "柠檬",
                 value: "#icon-lemon"
             }, {
+                name: "汉堡包",
+                value: "#icon-hamburg"
+            },  {
                 name: "雪花(冬季限定)",
                 value: "#icon-snowflake"
             }, {
@@ -180,6 +187,14 @@ export default {
         this.dynamic_board();
     },
     computed: {
+        // 判断胜者
+        judge_winner() {
+            return () => {
+                let b = this.chess_cnt(this.GameConfig.BLACK);
+                let w = this.chess_cnt(this.GameConfig.WHITE);
+                return b - w;
+            }
+        },
         // 可行解
         valid_chess() {
             return (x, y) => {
@@ -385,7 +400,7 @@ export default {
             let sleep_time = 1000;
             let start_time = Date.now();
             this.$api.othello.get_move(params)
-            // this.$api.othello.test_get_move(params)
+                    // this.$api.othello.test_get_move(params)
                     .then((response) => {
                         if (response.status === 200 && response.data.code === 200) {
                             console.log(response.data.data)
