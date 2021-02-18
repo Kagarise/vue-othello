@@ -255,7 +255,14 @@ export default {
         init_game: function () {
             if (typeof (this.play_type) === "undefined" || typeof (this.player1_type) === "undefined" || typeof (this.player2_type) === "undefined")
                 return;
+            this.is_finish = false;
             this.current_board = JSON.parse(JSON.stringify(this.GameConfig.EMPTY_BOARD));
+            this.x = -1;
+            this.y = -1;
+            this.past_board = [];
+            this.past_step = [];
+            this.color = this.GameConfig.BLACK;
+            this.operator_lock = true;
             this.past_board.push(JSON.parse(JSON.stringify(this.current_board)));
             this.moves = get_valid_moves(this.current_board, this.color);
             this.player1 = new Player(this.player1_type, this.GameConfig.BLACK);
