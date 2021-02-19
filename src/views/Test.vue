@@ -52,7 +52,7 @@ export default {
                 name: "Othello",
                 params: {
                     play_type: this.GameConfig.ONLINE_PLAY,
-                    player1_type: this.GameConfig.MINIMAX_PLAYER,
+                    player1_type: this.GameConfig.ALPHA_BETA_PLAYER,
                     player2_type: this.GameConfig.RANDOM_PLAYER,
                 }
             });

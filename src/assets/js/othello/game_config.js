@@ -27,7 +27,7 @@ const HUMAN_PLAYER = "human";
 const RANDOM_PLAYER = "random";
 const GREEDY_NUMBER_PLAYER = "number";
 const GREEDY_SCORE_PLAYER = "score";
-const MINIMAX_PLAYER = "minimax";
+const ALPHA_BETA_PLAYER = "alpha_beta";
 const UCT_PLAYER = "uct";
 const DEEP_LEARNING_PLAYER = "deep_learning";
 
@@ -44,7 +44,7 @@ export default {
     RANDOM_PLAYER,
     GREEDY_NUMBER_PLAYER,
     GREEDY_SCORE_PLAYER,
-    MINIMAX_PLAYER,
+    ALPHA_BETA_PLAYER,
     UCT_PLAYER,
     DEEP_LEARNING_PLAYER,
     LOCAL_PLAY,
