@@ -129,11 +129,11 @@ export default {
             },],
             level_list: [{
                 name: "Lethe",
-                value: this.GameConfig.GREEDY_NUMBER_PLAYER,
+                value: this.GameConfig.RANDOM_PLAYER,
                 style: "yellow"
             }, {
                 name: "Saya",
-                value: this.GameConfig.RANDOM_PLAYER,
+                value: this.GameConfig.GREEDY_NUMBER_PLAYER,
                 style: "green"
             }, {
                 name: "Eto",
@@ -180,7 +180,7 @@ export default {
             this.pop_type = pop_type;
         },
         chooseLevel: function (level_type) {
-            if (level_type !== this.GameConfig.GREEDY_SCORE_PLAYER && level_type !== this.GameConfig.RANDOM_PLAYER && level_type !== this.GameConfig.GREEDY_NUMBER_PLAYER) {
+            if (level_type !== this.GameConfig.GREEDY_SCORE_PLAYER && level_type !== this.GameConfig.RANDOM_PLAYER && level_type !== this.GameConfig.GREEDY_NUMBER_PLAYER && level_type !== this.GameConfig.MINIMAX_PLAYER) {
                 this.$message({
                     showClose: true,
                     message: '暂未开放',

@@ -24,8 +24,8 @@ const EMPTY_BOARD = [
 ]
 
 const HUMAN_PLAYER = "human";
-const GREEDY_NUMBER_PLAYER = "number";
 const RANDOM_PLAYER = "random";
+const GREEDY_NUMBER_PLAYER = "number";
 const GREEDY_SCORE_PLAYER = "score";
 const MINIMAX_PLAYER = "minimax";
 const UCT_PLAYER = "uct";
@@ -41,8 +41,8 @@ export default {
     WEIGHT,
     EMPTY_BOARD,
     HUMAN_PLAYER,
-    GREEDY_NUMBER_PLAYER,
     RANDOM_PLAYER,
+    GREEDY_NUMBER_PLAYER,
     GREEDY_SCORE_PLAYER,
     MINIMAX_PLAYER,
     UCT_PLAYER,

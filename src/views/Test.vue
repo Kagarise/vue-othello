@@ -1,7 +1,6 @@
 <template>
     <div id="test">
-        <span>{{ x }}/{{ y }}</span>
-        <button @click="getXY">click</button>
+        <button @click="test">click</button>
     </div>
 </template>
 
@@ -47,6 +46,16 @@ export default {
                         }
                         this.lock = false;
                     })
+        },
+        test: function () {
+            this.$router.push({
+                name: "Othello",
+                params: {
+                    play_type: this.GameConfig.ONLINE_PLAY,
+                    player1_type: this.GameConfig.MINIMAX_PLAYER,
+                    player2_type: this.GameConfig.RANDOM_PLAYER,
+                }
+            });
         }
     }
 }

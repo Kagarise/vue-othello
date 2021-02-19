@@ -160,7 +160,7 @@ export default {
             }, {
                 name: "汉堡包",
                 value: "#icon-hamburg"
-            },  {
+            }, {
                 name: "雪花(冬季限定)",
                 value: "#icon-snowflake"
             }, {
@@ -232,14 +232,6 @@ export default {
             this.play_type = this.$route.params.play_type;
             this.player1_type = this.$route.params.player1_type;
             this.player2_type = this.$route.params.player2_type;
-            if (typeof (this.play_type) === "undefined" || typeof (this.player1_type) === "undefined" || typeof (this.player2_type) === "undefined") {
-                this.$message({
-                    showClose: true,
-                    message: '请求错误，已返回主页',
-                    type: 'error'
-                });
-                this.$router.push({name: "Index"});
-            }
         },
         // 自适应棋盘
         dynamic_board: function () {
@@ -268,8 +260,6 @@ export default {
         },
         // 初始化棋盘
         init_game: function () {
-            if (typeof (this.play_type) === "undefined" || typeof (this.player1_type) === "undefined" || typeof (this.player2_type) === "undefined")
-                return;
             this.is_finish = false;
             this.current_board = JSON.parse(JSON.stringify(this.GameConfig.EMPTY_BOARD));
             this.x = -1;
@@ -279,6 +269,14 @@ export default {
             this.color = this.GameConfig.BLACK;
             this.operator_lock = true;
             this.past_board.push(JSON.parse(JSON.stringify(this.current_board)));
+            if (typeof (this.play_type) === "undefined" || typeof (this.player1_type) === "undefined" || typeof (this.player2_type) === "undefined") {
+                this.$message({
+                    showClose: true,
+                    message: '请求参数错误',
+                    type: 'error'
+                });
+                return;
+            }
             this.moves = get_valid_moves(this.current_board, this.color);
             this.player1 = new Player(this.player1_type, this.GameConfig.BLACK);
             this.player2 = new Player(this.player2_type, this.GameConfig.WHITE);
@@ -397,7 +395,7 @@ export default {
         },
         // 网络操作
         online_operator: function (params) {
-            let sleep_time = 1000;
+            let sleep_time = 800;
             let start_time = Date.now();
             this.$api.othello.get_move(params)
                     // this.$api.othello.test_get_move(params)
@@ -467,6 +465,7 @@ export default {
             this.pop_type = page;
         },
         to_index: function () {
+            this.is_finish = true;
             this.$router.push({name: "Index",});
         },
         restart: function () {
