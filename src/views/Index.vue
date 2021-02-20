@@ -180,7 +180,11 @@ export default {
             this.pop_type = pop_type;
         },
         chooseLevel: function (level_type) {
-            if (level_type !== this.GameConfig.GREEDY_SCORE_PLAYER && level_type !== this.GameConfig.RANDOM_PLAYER && level_type !== this.GameConfig.GREEDY_NUMBER_PLAYER && level_type !== this.GameConfig.ALPHA_BETA_PLAYER) {
+            if (level_type !== this.GameConfig.GREEDY_SCORE_PLAYER
+                    && level_type !== this.GameConfig.RANDOM_PLAYER
+                    && level_type !== this.GameConfig.GREEDY_NUMBER_PLAYER
+                    && level_type !== this.GameConfig.ALPHA_BETA_PLAYER
+                    && level_type !== this.GameConfig.UCT_PLAYER) {
                 this.$message({
                     showClose: true,
                     message: '暂未开放',
