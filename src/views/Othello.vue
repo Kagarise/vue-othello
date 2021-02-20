@@ -12,7 +12,7 @@
                     <p class="pop-title">设置</p>
                     <div class="select">
                         <span class="pop-title">提示</span>
-                        <el-select v-model="tips_value" placeholder="请选择" filterable style="width: 70%">
+                        <el-select v-model="tips_value" placeholder="请选择" style="width: 70%">
                             <el-option
                                     v-for="item in tips_list"
                                     :key="item.value"

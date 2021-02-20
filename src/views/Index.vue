@@ -69,9 +69,9 @@
                 <div v-if="pop_type === this.PageConfig.ABOUT" class="popup">
                     <p class="pop-title">关于游戏</p>
                     <div class="pop-content">
-                        <p>设计:&nbsp;<a href="https://github.com/Kagarise" target="_blank">kagarise</a></p>
-                        <p>程序:&nbsp;<a href="https://github.com/Kagarise" target="_blank">kagarise</a></p>
-                        <p>接口:&nbsp;<a href="https://github.com/Kagarise" target="_blank">kagarise</a></p>
+                        <p>设计:&nbsp;<a href="https://github.com/kagarise" target="_blank">kagarise</a></p>
+                        <p>程序:&nbsp;<a href="https://github.com/kagarise" target="_blank">kagarise</a></p>
+                        <p>接口:&nbsp;<a href="https://github.com/kagarise" target="_blank">kagarise</a></p>
                     </div>
                     <div class="btn-group-column">
                         <div class="btn" @click="revert()">
