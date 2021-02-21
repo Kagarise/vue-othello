@@ -140,13 +140,13 @@ export default {
                 value: this.GameConfig.GREEDY_SCORE_PLAYER,
                 style: "blue"
             }, {
-                name: "Kou",
-                value: this.GameConfig.UCT_PLAYER,
-                style: "red"
-            }, {
                 name: "Luna",
-                value: this.GameConfig.ALPHA_BETA_PLAYER,
+                value: this.GameConfig.UCT_PLAYER,
                 style: "purple"
+            }, {
+                name: "Kou",
+                value: this.GameConfig.ALPHA_BETA_PLAYER,
+                style: "red"
             }, {
                 name: "Tempest",
                 value: this.GameConfig.DEEP_LEARNING_PLAYER,
