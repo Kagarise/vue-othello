@@ -31,7 +31,7 @@ export default {
                 color: this.GameConfig.BLACK,
                 player: this.GameConfig.GREEDY_NUMBER_PLAYER
             }
-            this.$api.othello.get_move(params)
+            this.$api.othello.test_get_move(params)
                     .then((response) => {
                         if (response.status === 200)
                             console.log(response.data.msg);
