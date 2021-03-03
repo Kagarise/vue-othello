@@ -397,8 +397,8 @@ export default {
         online_operator: function (params) {
             let sleep_time = 800;
             let start_time = Date.now();
+            // this.$api.othello.test_get_move(params)
             this.$api.othello.get_move(params)
-                    // this.$api.othello.test_get_move(params)
                     .then((response) => {
                         if (response.status === 200 && response.data.code === 200) {
                             console.log(response.data.data)

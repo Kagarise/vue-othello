@@ -1,10 +1,11 @@
 <template>
     <div id="test">
-        <button @click="test">click</button>
+<!--        <button @click="conn">click</button>-->
     </div>
 </template>
-
 <script>
+import axios from "axios";
+
 
 export default {
     name: "Test",
@@ -13,13 +14,14 @@ export default {
             lock: false,
             x: -1,
             y: -1,
-            d_test: [1, 1, 1, 1, 1]
+            d_test: [1, 1, 1, 1, 1],
         }
     },
     created() {
-        console.log(this.d_test === false)
     },
     mounted() {
+    },
+    destroyed() {
     },
     methods: {
         getXY: function () {
@@ -56,8 +58,32 @@ export default {
                     player2_type: this.GameConfig.RANDOM_PLAYER,
                 }
             });
+        },
+        conn: function () {
+            let params = {
+                user_list: ["undefined", "undefined"],
+                init_length: 9
+            }
+            axios.post('http://localhost:1314/api/init/redis', params)
+                    .then((res) => {
+                        if (res.status === 200) {
+                            console.log(res.data);
+                        }
+                    })
+        },
+        disconn: function () {
+            let params = {
+                // user_list: ["undefined", "undefined"],
+                init_length: 9
+            }
+            axios.post('http://localhost:1314/api/delete/redis', params)
+                    .then((res) => {
+                        if (res.status === 200) {
+                            console.log(res.data);
+                        }
+                    })
         }
-    }
+    },
 }
 </script>
 

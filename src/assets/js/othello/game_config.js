@@ -33,6 +33,9 @@ const DEEP_LEARNING_PLAYER = "deep_learning";
 
 const LOCAL_PLAY = "local";
 const ONLINE_PLAY = "online";
+
+const CREATE_ROOM = "create";
+const JOIN_ROOM = "join";
 export default {
     BLACK,
     WHITE,
@@ -49,4 +52,6 @@ export default {
     DEEP_LEARNING_PLAYER,
     LOCAL_PLAY,
     ONLINE_PLAY,
+    CREATE_ROOM,
+    JOIN_ROOM
 }

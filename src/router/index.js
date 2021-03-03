@@ -13,10 +13,17 @@ const router = new Router({
         name: 'Othello',
         component: () => import('@/views/Othello'),
         hidden: true
-    }, {
-        path: '/test',
-        name: 'Test',
-        component: () => import('@/views/Test'),
+    },
+    //     {
+    //     path: '/test',
+    //     name: 'Test',
+    //     component: () => import('@/views/Test'),
+    //     hidden: true
+    // },
+        {
+        path: '/room/:room_id',
+        name: 'Room',
+        component: () => import('@/views/Room'),
         hidden: true
     }, {
         path: "*",

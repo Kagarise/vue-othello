@@ -7,6 +7,7 @@
                 <div v-if="pop_type === this.PageConfig.START" class="pop-bg start-bg"></div>
                 <div v-else-if="pop_type === this.PageConfig.MODEL_ONE" class="pop-bg model-one-bg"></div>
                 <div v-else-if="pop_type === this.PageConfig.MODEL_TWO" class="pop-bg model-two-bg"></div>
+                <div v-else-if="pop_type === this.PageConfig.MODEL_ROOM" class="pop-bg model-room-bg"></div>
                 <div v-else-if="pop_type === this.PageConfig.ABOUT" class="pop-bg about-bg"></div>
             </transition>
             <!-- 开始-->
@@ -58,6 +59,23 @@
                             <span>{{ val.name }}</span>
                         </div>
                         <div class="btn" @click="revert(1)">
+                            <svg class="icon" aria-hidden="true">
+                                <use :xlink:href="btn_id"></use>
+                            </svg>
+                            <span>返回</span>
+                        </div>
+                    </div>
+                </div>
+                <div v-else-if="pop_type === this.PageConfig.MODEL_ROOM" class="popup">
+                    <p class="pop-title">选择房间</p>
+                    <div class="btn-group-column">
+                        <div v-for="(val, idx) in room_list" :key="idx" class="btn" @click="chooseRoom(val.value)">
+                            <svg class="icon" aria-hidden="true">
+                                <use :xlink:href="btn_id"></use>
+                            </svg>
+                            <span>{{ val.name }}</span>
+                        </div>
+                        <div class="btn" @click="revert(4)">
                             <svg class="icon" aria-hidden="true">
                                 <use :xlink:href="btn_id"></use>
                             </svg>
@@ -159,6 +177,13 @@ export default {
                 name: "在线双人",
                 value: this.GameConfig.ONLINE_PLAY,
             },],
+            room_list: [{
+                name: "创建房间",
+                value: this.GameConfig.CREATE_ROOM,
+            }, {
+                name: "加入房间",
+                value: this.GameConfig.JOIN_ROOM,
+            }]
         }
     },
     created() {
@@ -180,11 +205,11 @@ export default {
             this.pop_type = pop_type;
         },
         chooseLevel: function (level_type) {
-            if (level_type !== this.GameConfig.GREEDY_SCORE_PLAYER
-                    && level_type !== this.GameConfig.RANDOM_PLAYER
+            if (level_type !== this.GameConfig.RANDOM_PLAYER
+                    && level_type !== this.GameConfig.GREEDY_SCORE_PLAYER
                     && level_type !== this.GameConfig.GREEDY_NUMBER_PLAYER
-                    && level_type !== this.GameConfig.ALPHA_BETA_PLAYER
-                    && level_type !== this.GameConfig.UCT_PLAYER) {
+                    && level_type !== this.GameConfig.UCT_PLAYER
+                    && level_type !== this.GameConfig.ALPHA_BETA_PLAYER) {
                 this.$message({
                     showClose: true,
                     message: '暂未开放',
@@ -214,19 +239,7 @@ export default {
                     });
                     break;
                 case this.GameConfig.ONLINE_PLAY:
-                    this.$message({
-                        showClose: true,
-                        message: '暂未开放',
-                        type: 'info',
-                    });
-                    // this.$router.push({
-                    //     name: "Othello",
-                    //     params: {
-                    //         play_type: this.GameConfig.ONLINE_PLAY,
-                    //         player1: this.GameConfig.HUMAN_PLAYER,
-                    //         player2: this.GameConfig.HUMAN_PLAYER,
-                    //     }
-                    // });
+                    this.pop_type = this.PageConfig.MODEL_ROOM;
                     break;
                 default:
                     this.$message({
@@ -236,6 +249,45 @@ export default {
                     });
             }
         },
+        chooseRoom: function (room_type) {
+            switch (room_type) {
+                case this.GameConfig.CREATE_ROOM:
+                    // this.$api.othello.test_create_room()
+                    this.$api.othello.create_room()
+                            .then((response) => {
+                                if (response.status === 200 && response.data.code === 200) {
+                                    console.log(response.data.data)
+                                    let room_id = response.data.data.room_id;
+                                    this.$router.push({
+                                        name: "Room",
+                                        params: {
+                                            room_id: room_id
+                                        }
+                                    });
+                                } else {
+                                    this.$message({
+                                        showClose: true,
+                                        message: '创建房间请求错误',
+                                        type: 'error'
+                                    });
+                                }
+                            })
+                    break;
+                case this.GameConfig.JOIN_ROOM:
+                    this.$message({
+                        showClose: true,
+                        message: '调试中',
+                        type: 'error',
+                    })
+                    break;
+                default:
+                    this.$message({
+                        showClose: true,
+                        message: '选择房间错误',
+                        type: 'error',
+                    })
+            }
+        }
     }
 }
 </script>

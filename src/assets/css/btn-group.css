@@ -13,7 +13,7 @@
 
 .btn {
     cursor:pointer;
-    margin: 0.2em;
+    /*margin: 0.1em;*/
     font-size: 2em;
     width: 5.5em;
     display: flex;

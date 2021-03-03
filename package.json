@@ -8,9 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "bufferutil": "^4.0.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.0",
     "jquery": "^3.5.1",
+    "socket.io-client": "^3.1.1",
+    "utf-8-validate": "^5.0.2",
     "vue": "^2.6.11",
     "vue-router": "^3.4.9"
   },
