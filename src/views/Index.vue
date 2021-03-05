@@ -75,6 +75,10 @@
                             </svg>
                             <span>{{ val.name }}</span>
                         </div>
+                        <el-input class="pop-input"
+                                  placeholder="请输入房间号"
+                                  v-model="room_id">
+                        </el-input>
                         <div class="btn" @click="revert(4)">
                             <svg class="icon" aria-hidden="true">
                                 <use :xlink:href="btn_id"></use>
@@ -183,7 +187,8 @@ export default {
             }, {
                 name: "加入房间",
                 value: this.GameConfig.JOIN_ROOM,
-            }]
+            }],
+            room_id: '',
         }
     },
     created() {
@@ -274,11 +279,33 @@ export default {
                             })
                     break;
                 case this.GameConfig.JOIN_ROOM:
-                    this.$message({
-                        showClose: true,
-                        message: '调试中',
-                        type: 'error',
-                    })
+                    if (this.room_id.length !== 6) {
+                        this.$message({
+                            showClose: true,
+                            message: '房间号为六位',
+                            type: 'error'
+                        });
+                        break;
+                    }
+                    // eslint-disable-next-line no-case-declarations
+                    let i = 0;
+                    for (; i < this.room_id.length; i++)
+                        if (!(this.room_id[i] >= '0' && this.room_id[i] <= '9') && !(this.room_id[i] >= 'a' && this.room_id[i] <= 'z')) {
+                            this.$message({
+                                showClose: true,
+                                message: '房间号只包含数字和小写字母',
+                                type: 'error'
+                            });
+                            break;
+                        }
+                    if (i >= this.room_id.length) {
+                        this.$router.push({
+                            name: "Room",
+                            params: {
+                                room_id: this.room_id
+                            }
+                        });
+                    }
                     break;
                 default:
                     this.$message({

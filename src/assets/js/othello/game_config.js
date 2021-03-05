@@ -24,6 +24,7 @@ const EMPTY_BOARD = [
 ]
 
 const HUMAN_PLAYER = "human";
+const REMOTE_PLAYER = "remote";
 const RANDOM_PLAYER = "random";
 const GREEDY_NUMBER_PLAYER = "number";
 const GREEDY_SCORE_PLAYER = "score";
@@ -45,6 +46,7 @@ export default {
     EMPTY_BOARD,
     HUMAN_PLAYER,
     RANDOM_PLAYER,
+    REMOTE_PLAYER,
     GREEDY_NUMBER_PLAYER,
     GREEDY_SCORE_PLAYER,
     ALPHA_BETA_PLAYER,

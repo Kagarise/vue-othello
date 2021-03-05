@@ -175,7 +175,7 @@ export default {
             }, {
                 name: "爱心(情人节限定)",
                 value: "#icon-love"
-            },]
+            },],
         }
     },
     created() {
@@ -466,7 +466,7 @@ export default {
         },
         to_index: function () {
             this.is_finish = true;
-            this.$router.push({name: "Index",});
+            this.$router.push({name: "Index"});
         },
         restart: function () {
             this.init_game()
